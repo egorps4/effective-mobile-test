@@ -10,6 +10,8 @@ async function start() {
 
 	const port = process.env.PORT || 3000
 
+	app.setGlobalPrefix("api")
+
 	await app.listen(port, () => Logger.log(`Backend start on ${port} [${process.env.NODE_ENV}]`))
 }
 start()
