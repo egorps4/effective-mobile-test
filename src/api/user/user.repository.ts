@@ -59,7 +59,7 @@ export class UserRepository {
 
 	async updateIssues(status: boolean): Promise<number> {
 		try {
-			const updatedInfo = await this.userModel.update({ issues: !status, deletedAt: null }, { issues: status });
+			const updatedInfo = await this.userModel.update({ issues: !status, deletedAt: null }, { issues: status })
 			if (updatedInfo.affected === 0) {
 				this.loggerService.log({ mode: "warn", message: "Не было обновлено ни одной строки", ctx: "UserRepository resetIssues" })
 			}

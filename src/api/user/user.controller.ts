@@ -12,7 +12,7 @@ export class UserController {
 		private readonly userService: UserService,
 		private readonly historyService: HistoryService,
 		private readonly loggerService: CustomLogger
-	) { }
+	) {}
 
 	@Get("all")
 	async getAllUsers(): Promise<IUser[]> {
@@ -65,7 +65,7 @@ export class UserController {
 			const updatedUserCount = await this.userService.resetIssues()
 
 			return {
-				updatedUserCount
+				updatedUserCount,
 			}
 		} catch (error) {
 			if (error instanceof HttpException) throw error

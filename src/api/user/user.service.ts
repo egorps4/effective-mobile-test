@@ -46,7 +46,7 @@ export class UserService {
 
 	public async update(user: IUser, dto: UpdateUserDto) {
 		try {
-			const userEntity = new UserEntity({...user, ...dto})
+			const userEntity = new UserEntity({ ...user, ...dto })
 			return await this.userRepository.update(userEntity)
 		} catch (error) {
 			if (error instanceof HttpException) throw error

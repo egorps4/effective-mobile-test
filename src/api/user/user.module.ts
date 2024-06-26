@@ -11,7 +11,7 @@ import { UserRepository } from "./user.repository"
 @Module({
 	controllers: [UserController],
 	providers: [CustomLogger, UserService, UserRepository],
-	imports: [TypeOrmModule.forFeature([UserModel, HistoryModel]), HistoryModule], 
+	imports: [TypeOrmModule.forFeature([UserModel, HistoryModel]), HistoryModule],
 	exports: [UserService],
-  })
-  export class UserModule {}
+})
+export class UserModule {}

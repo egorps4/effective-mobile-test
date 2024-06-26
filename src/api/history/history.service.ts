@@ -27,7 +27,7 @@ export class HistoryService {
 	public async createHistory(actionType: ActionsType, user: IUser): Promise<IHistory> {
 		try {
 			const userEntity = new UserEntity(user)
-			const historyEntity = new HistoryEntity({actionType, user: userEntity})
+			const historyEntity = new HistoryEntity({ actionType, user: userEntity })
 			return await this.historyRepository.create(historyEntity)
 		} catch (error) {
 			if (error instanceof HttpException) throw error
