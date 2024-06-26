@@ -1,73 +1,63 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Тестовое задание
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+**Автор**: Игнатьев Егор
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Общая информация
 
-## Description
+Оба задания выполнены в рамках одного проекта с использованием **NestJS** и **TypeScript**.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Структура проекта
 
-## Installation
+### envs
+Папка с переменными окружения для подключения к базе данных.
 
-```bash
-$ npm install
-```
+### src
+Основная папка проекта.
 
-## Running the app
+#### Структура папки src:
+- **common**: вспомогательные сервисы проекта (содержит только кастомный логгер).
+- **config**: конфигурационные файлы (включает конфигурацию для базы данных).
+- **interfaces**: интерфейсы.
+- **migrations**: миграции для создания 1000 пользователей.
+- **app.module.ts**: основной модуль приложения.
+- **main.ts**: точка входа приложения.
+- **api**: API.
 
-```bash
-# development
-$ npm run start
+#### Структура папки api:
+- **history**: сервисы истории пользователей.
+- **user**: сервисы пользователей.
 
-# watch mode
-$ npm run start:dev
+## Типы файлов в проекте
 
-# production mode
-$ npm run start:prod
-```
+- **controller**: контроллеры.
+- **service**: сервисы с основной логикой.
+- **repository**: логика работы с базой данных.
+- **model**: описание сущностей для TypeORM.
+- **entity**: представление сущностей в виде классов для более удобной работы.
+- **module**: модули сервисов.
 
-## Test
+## Документация
 
-```bash
-# unit tests
-$ npm run test
+Из-за отсутствия времени проект не был документирован с помощью Swagger, однако ниже представлена краткая документация.
 
-# e2e tests
-$ npm run test:e2e
+### Доступные эндпоинты:
 
-# test coverage
-$ npm run test:cov
-```
+- **GET** `/api/user/all`: Получить всех пользователей.
+- **POST** `/api/user`: Создать пользователя. В body запроса передаются `firstName`, `lastName`, `age`, `issues`. Возвращает объект пользователя.
+- **PATCH** `/api/user/:id`: Обновить любое поле пользователя. В body запроса можно передать `firstName`, `lastName`, `age`, `issues`. Возвращает обновленный объект пользователя.
+- **PATCH** `/api/user/issues/reset`: Сброс проблем пользователей (из true в false). Возвращает объект с числовым свойством, показывающим количество обновленных строк.
+- **DELETE** `/api/user/:id`: "Удаление" пользователя (пометка как удаленного). Возвращает удаленного пользователя.
 
-## Support
+- **GET** `/api/history`: Возвращает историю действий с пользователем. В query параметры необходимо передать `id` пользователя. Опциональны параметры `page` и `offset` для пагинации.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Локальный запуск проекта
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+1. Прописать значения в переменных окружения для подключения к PostgreSQL.
+2. Выполнить команду:
+   ```bash
+   npm run start:dev
+   
+   Сущности базы данных создадутся автоматически, так как настройка synchronize у TypeORM установлена в `true`.
+3. Для запуска миграций и наполнения таблицы пользователей данными, выполнить команду:
+    ```bash
+    npm run migration:run
